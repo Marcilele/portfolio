@@ -1,0 +1,19 @@
+server:
+  port: 8686
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  datasource:
+    username: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://node03:3306/gcandecdb?useSSL=FALSE&serverTimezone=GMT%2B8
+    password: 123456
+  redis:
+    host: node01
+    port: 6379
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

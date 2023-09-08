@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    /* 设置背景颜色 */
+    background-color: #263249;
+}
+
+#m_top{
+    /*width: 1500px;*/
+    height: 40px;
+    margin: 0px auto;
+/*    background: red;*/
+}
+
+#m_top .title{
+    width: 600px;
+    height: 40px;
+    margin: 0px auto;
+/*    background: blue;*/
+}
+
+#m_top .title h1{
+    font-size: 20px;
+    padding-left: 23px;
+    padding-top: 2px;
+    color: white;
+}
+
+#m_center{
+    /*width: 1500px;*/
+    height: 710px;
+    margin: 0px auto;
+    /*background: red;*/
+}
+
+#m_center .c1{
+     width: 520px;
+     height: 709px;
+     float: left;
+     /*background: green;*/
+ }
+
+#m_center .c1 .c1_t{
+    width: 520px;
+    height: 236px;
+    /*background: red;*/
+}
+
+#m_center .c1 .c1_m{
+    width: 520px;
+    height: 236px;
+    /*background: purple;*/
+}
+
+#m_center .c1 .c1_b{
+    width: 520px;
+    height: 236px;
+    /*background: blue;*/
+}
+
+#m_center .c2{
+    width: 520px;
+    height: 709px;
+    float: left;
+    margin-left: 2px;
+    /*background: pink;*/
+}
+
+#m_center .c2 .c2_t{
+    width: 520px;
+    height: 354px;
+    /*background: green;*/
+}
+
+#m_center .c2 .c2_b{
+    width: 520px;
+    height: 354px;
+    /*background: orange;*/
+}
+
+#m_center .c3{
+    width: 474px;
+    height: 709px;
+    float: left;
+    margin-left: 2px;
+    /*background: yellow;*/
+}
+
+#m_center .c3 .c3_t{
+    width: 474px;
+    height: 354px;
+    /*background: red;*/
+}
+
+#m_center .c3 .c3_b{
+    width: 474px;
+    height: 355px;
+    /*background: green;*/
+}
