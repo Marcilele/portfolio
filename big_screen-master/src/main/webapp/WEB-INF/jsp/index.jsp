@@ -136,7 +136,6 @@
 </div>
 <div class="back"></div>
 
-<%-- 产品数量 --%>
 <script type="text/javascript">
     window.onload = function(){
         getproductcount();
@@ -160,7 +159,6 @@
     }
 </script>
 
-<%-- 有多少产品处于缺货状态 --%>
 <script type="text/javascript">
     window.onload = function(){
         getoutofstockcount();
@@ -212,12 +210,9 @@
         }
         console.log(x);
         console.log(y);
-        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echart1'));
-        // 指定图表的配置项和数据
         var option = {
             title: {
-                // text: '不同类别的产品的平均评分',
                 // textStyle: {
                 //     color: "white",
                 //     fontSize: 12
@@ -301,7 +296,6 @@
                 }
             ]
         };
-        // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     }
 
@@ -335,12 +329,9 @@
         }
         console.log(x);
         console.log(y);
-        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echart2'));
-        // 指定图表的配置项和数据
         var option = {
             title: {
-                // text: '原始价格与折扣的关系',
                 // textStyle: {
                 //     color: "white",
                 //     fontSize: 12
@@ -423,7 +414,6 @@
                 }
             ]
         };
-        // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     }
 
@@ -456,9 +446,7 @@
         }
         console.log(x);
         console.log(y);
-        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echart3'));
-        // 指定图表的配置项和数据
         var option = {
             title: {
                 // text: '不同品牌的产品数量TOP10',
@@ -545,7 +533,6 @@
                 }
             ]
         };
-        // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     }
 
@@ -581,10 +568,8 @@
         console.log(x);
         console.log(y);
         console.log(d);
-        // 基于准备好的dom，初始化echarts实例e
         var myChart = echarts.init(document.getElementById('echart4'));
 
-        // 指定图表的配置项和数据
         var option = {
             title: {
                 // text: '不同类别的产品数量',
@@ -637,7 +622,6 @@
             ]
         };
 
-        // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     }
 </script>
@@ -669,12 +653,9 @@
         }
         console.log(x);
         console.log(y);
-        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echart5'));
-        // 指定图表的配置项和数据
         var option = {
             title: {
-                // text: '不同子类别的产品数量',
                 // textStyle: {
                 //     color: "white",
                 //     fontSize: 12
@@ -716,9 +697,8 @@
                     },
                     data: x,
                     axisLabel: {
-                        rotate: 45, // 设置文本旋转角度，单位为度（0-180）
+                        rotate: 45,
                         formatter: function (value) {
-                            // 可以自定义 formatter 函数来处理文本内容，例如截取部分字符或添加换行符
                             if (value.length > 10) {
                                 return value.substring(0, 10) + '...';
                             }
@@ -769,7 +749,6 @@
                 }
             ]
         };
-        // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     }
 
@@ -802,12 +781,10 @@
         }
         console.log(x);
         console.log(y);
-        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echart6'));
-        // 指定图表的配置项和数据
         var option = {
             title: {
-                // text: '不同卖家的产品数量TOP10',
+                // text:
                 // textStyle: {
                 //     color: "white",
                 //     fontSize: 12
@@ -890,7 +867,6 @@
                 }
             ]
         };
-        // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     }
 
@@ -899,7 +875,6 @@
 <!--map_1-->
 <script>
     $(function map() {
-            // 基于准备好的dom，初始化echarts实例
             var myChart = echarts.init(document.getElementById('map_1'));
             var data = {{form.map_1.data|safe}};
             var geoCoordMap = {
@@ -1127,7 +1102,7 @@
                             show: false
                         }
                     },
-                    roam: false,//禁止其放大缩小
+                    roam: false,
                     itemStyle: {
                         normal: {
                             areaColor: '#4c60ff',

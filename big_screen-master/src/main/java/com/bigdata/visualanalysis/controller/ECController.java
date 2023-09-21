@@ -68,7 +68,6 @@ public class ECController {
 //
 //        return JSON.toJSON(discountList);
 
-        //从redis读取数据
         Jedis jedis = RedisUtil.getJedis();
         Set<String> keys = jedis.hkeys("discount");
         List<Discount> discountList = new ArrayList<Discount>();
