@@ -27,7 +27,7 @@ public class ECController {
         return "index";
     }
 
-    //不同类别的产品的平均评分
+    //Average rating of products in different categories
     @RequestMapping("/categoryaveragerating")
     @ResponseBody
     public Object categoryaveragerating(Model model) {
@@ -37,7 +37,7 @@ public class ECController {
 //
 //        return JSON.toJSON(categoryAverageRatingList);
 
-        //从redis读取数据
+    //Read data from redis
         Jedis jedis = RedisUtil.getJedis();
         Set<String> keys = jedis.hkeys("categoryaveragerating");
         List<CategoryAverageRating> categoryAverageRatingList = new ArrayList<CategoryAverageRating>();
@@ -49,7 +49,8 @@ public class ECController {
             categoryAverageRatingList.add(categoryAverageRating);
         }
 
-        // 排序
+
+    //Sort
         Collections.sort(categoryAverageRatingList, (a, b) -> Double.compare(b.getAverageRating(), a.getAverageRating()));
         System.out.println(JSON.toJSON(categoryAverageRatingList));
 
@@ -57,33 +58,33 @@ public class ECController {
 
     }
 
-    //价格与折扣的关系
-    @RequestMapping("/actualpriceanddiscount")
+    //calculate the total number of products with different discounts, sort by product count, and take the top 20 most used discounts
+    @RequestMapping("/discountcount")
     @ResponseBody
-    public Object actualpriceanddiscount(Model model) {
-//        List<ActualPriceAndDiscount> actualPriceAndDiscountList = ecDao.getActualPriceAndDiscount();
-//        System.out.println(JSON.toJSON(actualPriceAndDiscountList));
-////		model.addAttribute("actualPriceAndDiscountList",actualPriceAndDiscountList);
+    public Object discount(Model model) {
+//        List<Discount> discountList = ecDao.getActualPriceAndDiscount();
+//        System.out.println(JSON.toJSON(discountList));
+////		model.addAttribute("discountList",discountList);
 //
-//        return JSON.toJSON(actualPriceAndDiscountList);
+//        return JSON.toJSON(discountList);
 
         //从redis读取数据
         Jedis jedis = RedisUtil.getJedis();
-        Set<String> keys = jedis.hkeys("actualpriceanddiscount");
-        List<ActualPriceAndDiscount> actualPriceAndDiscountList = new ArrayList<ActualPriceAndDiscount>();
+        Set<String> keys = jedis.hkeys("discount");
+        List<Discount> discountList = new ArrayList<Discount>();
         for (String key : keys) {
-            String value = jedis.hget("actualpriceanddiscount", key);
-            ActualPriceAndDiscount actualPriceAndDiscount = new ActualPriceAndDiscount();
-            actualPriceAndDiscount.setActualPrice(Integer.parseInt(key));
-            actualPriceAndDiscount.setDiscount(Double.parseDouble(value));
-            actualPriceAndDiscountList.add(actualPriceAndDiscount);
+            String value = jedis.hget("discount", key);
+            Discount discount = new Discount();
+            discount.setDicount(key);
+            discount.setCount(Integer.parseInt(value));
+            discountList.add(discount);
         }
 
-        // 排序
-        Collections.sort(actualPriceAndDiscountList, (a, b) -> Integer.compare(b.getActualPrice(), a.getActualPrice()));
+        // sort
+        Collections.sort(discountList, (a, b) -> Integer.compare(b.getCount(), a.getCount()));
 
-        // 取前20个
-        List<ActualPriceAndDiscount> top20List = actualPriceAndDiscountList.subList(0, Math.min(20, actualPriceAndDiscountList.size()));
+        // get top 20
+        List<Discount> top20List = discountList.subList(0, Math.min(20, discountList.size()));
 
         System.out.println(JSON.toJSON(top20List));
 
@@ -91,7 +92,7 @@ public class ECController {
 
     }
 
-    //统计不同品牌的产品数量TOP10
+    //calculate the top 10 brands with the most products
     @RequestMapping("/brandcount")
     @ResponseBody
     public Object brandcount(Model model) {
@@ -101,7 +102,6 @@ public class ECController {
 //
 //        return JSON.toJSON(brandCountList);
 
-        //从redis读取数据
         Jedis jedis = RedisUtil.getJedis();
         Set<String> keys = jedis.hkeys("brandcount");
         List<BrandCount> brandCountList = new ArrayList<BrandCount>();
@@ -113,10 +113,10 @@ public class ECController {
             brandCountList.add(brandCount);
         }
 
-        // 排序
+        // sort
         Collections.sort(brandCountList, (a, b) -> Integer.compare(b.getCount(), a.getCount()));
 
-        // 取前10个
+        // get top 10
         List<BrandCount> top10List = brandCountList.subList(0, Math.min(10, brandCountList.size()));
 
         System.out.println(JSON.toJSON(top10List));
@@ -125,7 +125,7 @@ public class ECController {
 
     }
 
-    //统计产品数量
+    //calculate the total number of products
     @RequestMapping("/productcount")
     @ResponseBody
     public Object productcount(Model model) {
@@ -135,7 +135,6 @@ public class ECController {
 //
 //        return JSON.toJSON(productCount);
 
-        //从redis读取数据
         Jedis jedis = RedisUtil.getJedis();
         String value = jedis.hget("productcount", "productCount");
         ProductCount productCount = new ProductCount();
@@ -146,7 +145,7 @@ public class ECController {
 
     }
 
-    //统计有多少产品处于缺货状态
+    //calculate the total number of products that are out of stock
     @RequestMapping("/outofstockcount")
     @ResponseBody
     public Object outofstockcount(Model model) {
@@ -156,7 +155,6 @@ public class ECController {
 //
 //        return JSON.toJSON(outOfStockCount);
 
-        //从redis读取数据
         Jedis jedis = RedisUtil.getJedis();
         String value = jedis.hget("outofstockcount", "TRUE");
         OutOfStockCount outOfStockCount = new OutOfStockCount();
@@ -167,7 +165,7 @@ public class ECController {
 
     }
 
-    //统计不同类别的产品数量
+    //calculate the total number of products that are in different categories
     @RequestMapping("/categorycount")
     @ResponseBody
     public Object categorycount(Model model) {
@@ -177,7 +175,6 @@ public class ECController {
 //
 //        return JSON.toJSON(categoryCountList);
 
-        //从redis读取数据
         Jedis jedis = RedisUtil.getJedis();
         Set<String> keys = jedis.hkeys("categorycount");
         List<CategoryCount> categoryCountList = new ArrayList<CategoryCount>();
@@ -189,7 +186,7 @@ public class ECController {
             categoryCountList.add(categoryCount);
         }
 
-        // 排序
+        // sort
         Collections.sort(categoryCountList, (a, b) -> Double.compare(b.getCount(), a.getCount()));
         System.out.println(JSON.toJSON(categoryCountList));
 
@@ -197,7 +194,7 @@ public class ECController {
 
     }
 
-    //统计子类别的产品数量TOP5
+    //calculate the total number of products that are in different subcategories, take the top 5 most subcategories
     @RequestMapping("/subcategorycount")
     @ResponseBody
     public Object subcategorycount(Model model) {
@@ -207,7 +204,6 @@ public class ECController {
 //
 //        return JSON.toJSON(subCategoryCountList);
 
-        //从redis读取数据
         Jedis jedis = RedisUtil.getJedis();
         Set<String> keys = jedis.hkeys("subcategorycount");
         List<SubCategoryCount> subCategoryCountList = new ArrayList<SubCategoryCount>();
@@ -219,10 +215,10 @@ public class ECController {
             subCategoryCountList.add(subCategoryCount);
         }
 
-        // 排序
+        // sort
         Collections.sort(subCategoryCountList, (a, b) -> Integer.compare(b.getCount(), a.getCount()));
 
-        // 取前5个
+        // take top 5
         List<SubCategoryCount> top5List = subCategoryCountList.subList(0, Math.min(5, subCategoryCountList.size()));
 
         System.out.println(JSON.toJSON(top5List));
@@ -231,7 +227,7 @@ public class ECController {
 
     }
 
-    //统计不同卖家的产品数量TOP10
+    //Calculate the number of products with different sellers, sort by product count, and take the top 10 sellers with the most products
     @RequestMapping("/sellercount")
     @ResponseBody
     public Object sellercount(Model model) {
@@ -241,7 +237,6 @@ public class ECController {
 //
 //        return JSON.toJSON(sellerCountList);
 
-        //从redis读取数据
         Jedis jedis = RedisUtil.getJedis();
         Set<String> keys = jedis.hkeys("sellercount");
         List<SellerCount> sellerCountList = new ArrayList<SellerCount>();
@@ -253,10 +248,10 @@ public class ECController {
             sellerCountList.add(sellerCount);
         }
 
-        // 排序
+        // sort
         Collections.sort(sellerCountList, (a, b) -> Integer.compare(b.getCount(), a.getCount()));
 
-        // 取前10个
+        // take top 10
         List<SellerCount> top10List = sellerCountList.subList(0, Math.min(10, sellerCountList.size()));
 
         System.out.println(JSON.toJSON(top10List));

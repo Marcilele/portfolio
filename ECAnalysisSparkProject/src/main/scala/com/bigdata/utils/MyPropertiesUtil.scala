@@ -4,7 +4,7 @@ import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.Properties
 
-//读取配置文件的util类
+//Read the util class of the configuration file
 object MyPropertiesUtil {
 
   def main(args: Array[String]): Unit = {
@@ -16,7 +16,7 @@ object MyPropertiesUtil {
 
   def load(propertiesName: String): Properties = {
     val properties: Properties = new Properties()
-    //加载指定的配置文件
+    //load the specified configuration file
     properties.load(new InputStreamReader(
       Thread.currentThread().getContextClassLoader.getResourceAsStream(propertiesName),
       StandardCharsets.UTF_8)

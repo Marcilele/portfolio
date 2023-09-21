@@ -10,7 +10,9 @@ import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.dstream.InputDStream
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
 
-//读取Kafka的util类
+//Read Kafka's util class
+
+
 object MyKafkaUtil {
 
   def main(args: Array[String]): Unit = {
@@ -33,24 +35,25 @@ object MyKafkaUtil {
   private val properties: Properties = MyPropertiesUtil.load("config.properties")
   val broker_list = properties.getProperty("kafka.broker.list")
 
-  //Kafka消费者配置
+  //Kafka consumer configuration
   var kafkaParams = collection.mutable.Map(
-    //连接Kafka集群
+  //connect to Kafka cluster
     ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> broker_list,
-    //Key和Value的反序列化
+  //Key and Value deserialization
     ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG -> classOf[StringDeserializer],
     ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG -> classOf[StringDeserializer],
-    //设置消费者组ID——group.id
+  //set consumer group ID —— group.id
     ConsumerConfig.GROUP_ID_CONFIG -> "ec_group",
-    //设置自动重置偏移量 earliest latest
+  //set auto reset offset to earliest or latest
     ConsumerConfig.AUTO_OFFSET_RESET_CONFIG -> "earliest",
-    //设置自动提交
-    //如果是true，则这个消费者的偏移量会在后台自动提交，但是Kafka宕机容易丢失数据
-    //如果是false，会需要手动维护Kafka的偏移量
+
+    //set auto commit
+  //If it is true, the offset of this consumer will be automatically submitted in the background, but Kafka is prone to data loss when it crashes
+  //If it is false, we will need to manually maintain the offset of Kafka
     ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG -> (false: java.lang.Boolean)
   )
 
-  //创建DStream，返回接收到的输入参数
+  //create DStream, return the received input parameters
   def getKafkaStream(topic: String, ssc: StreamingContext): InputDStream[ConsumerRecord[String,String]] = {
     val DStream: InputDStream[ConsumerRecord[String, String]] = KafkaUtils.createDirectStream(
       ssc,
@@ -60,7 +63,7 @@ object MyKafkaUtil {
     DStream
   }
 
-  //在对Kafka数据进行消费的时候，指定消费者组
+  //When consuming Kafka data, specify the consumer group
   def getKafkaStream(topic: String, ssc: StreamingContext, groupId: String): InputDStream[ConsumerRecord[String,String]] = {
     kafkaParams("group.id") = groupId
     val DStream: InputDStream[ConsumerRecord[String, String]] = KafkaUtils.createDirectStream(
@@ -71,7 +74,8 @@ object MyKafkaUtil {
     DStream
   }
 
-  //从指定的偏移量位置消费数据
+
+  //Consume data from the specified offset position
   def getKafkaStream(topic: String, ssc: StreamingContext, offsets: Map[TopicPartition,Long], groupId: String): InputDStream[ConsumerRecord[String,String]] = {
     kafkaParams("group.id") = groupId
     val DStream: InputDStream[ConsumerRecord[String, String]] = KafkaUtils.createDirectStream(

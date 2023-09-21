@@ -16,6 +16,15 @@
     <properties>
         <java.version>8</java.version>
     </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -28,13 +37,14 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <!-- 使用jsp引擎，springboot内置tomcat没有此依赖 -->
+        <!--        This dependency is specific to the Jasper compiler for Tomcat, which is responsible for handling JSP (JavaServer Pages) compilation.-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Mybatis与Spring Boot整合的启动器,自动完成整合的配置 -->
+        <!-- Mybatis and Spring Boot integration starter, automatically complete the integration configuration -->
+
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -63,14 +73,5 @@
             <version>3.2.0</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

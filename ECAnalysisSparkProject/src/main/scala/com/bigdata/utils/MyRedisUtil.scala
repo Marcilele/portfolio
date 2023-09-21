@@ -2,13 +2,13 @@ package com.bigdata.utils
 
 import redis.clients.jedis.{Jedis, JedisPool, JedisPoolConfig}
 
-//获取Jedis客户端的Util类
+//get the Jedis client's Util class
 object MyRedisUtil {
 
-  //定义一个连接池对象
+  //Define a connection pool object
   private var jedisPool: JedisPool = null
 
-  //获取Jedis客户端
+  //get the Jedis client
   def getJedisClient(): Jedis = {
     if(jedisPool == null){
       build()
@@ -16,7 +16,7 @@ object MyRedisUtil {
     jedisPool.getResource
   }
 
-  //创建JedisPool连接池对象
+  //create JedisPool connection pool object
   def build(): Unit = {
 
     val properties = MyPropertiesUtil.load("config.properties")
@@ -24,17 +24,18 @@ object MyRedisUtil {
     val port = properties.getProperty("redis.port")
 
     val jedisPoolConfig: JedisPoolConfig = new JedisPoolConfig()
-    //最大连接数
+    //Maximum number of connections
     jedisPoolConfig.setMaxTotal(10000)
-    //最大空闲
+    //Maximum number of idle connections
     jedisPoolConfig.setMaxIdle(20)
-    //最小空闲
+    //Minimum idle
     jedisPoolConfig.setMinIdle(20)
-    //忙碌时是否等待
+    //Whether to wait when busy
     jedisPoolConfig.setBlockWhenExhausted(true)
-    //忙碌时等待时长 毫秒
+    //Duration of waiting when busy in milliseconds
     jedisPoolConfig.setMaxWaitMillis(5000)
-    //每次获得连接的进行测试
+    //Test each time you get a connection
+
     jedisPoolConfig.setTestOnBorrow(true)
 
     jedisPool = new JedisPool(

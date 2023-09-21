@@ -12,7 +12,6 @@
         <spark.version>3.0.0</spark.version>
         <scala.version>2.12.11</scala.version>
         <kafka.version>2.6.2</kafka.version>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -113,6 +112,13 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.78</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.typesafe.play</groupId>
+            <artifactId>play-json_2.12</artifactId> <!-- make sure to choose the right Scala version suffix, e.g., 2.12 or 2.13 -->
+            <version>2.9.2</version> <!-- choose the version you want -->
+        </dependency>
+
     </dependencies>
 
     <build>

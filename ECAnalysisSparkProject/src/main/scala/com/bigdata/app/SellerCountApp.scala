@@ -11,7 +11,7 @@ import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import redis.clients.jedis.Jedis
 
 /**
- * 统计不同卖家的产品数量
+ * Calculate the number of products with different sellers
  */
 object SellerCountApp {
 
@@ -23,30 +23,23 @@ object SellerCountApp {
 
     val ssc = new StreamingContext(conf,Seconds(5))
 
-    //使用有状态操作时，需要设定检查点路径
     ssc.checkpoint("cp")
 
-    //kafka主题
-    val topic = "flipkartfashionproducts1"
-    //消费者组
+    val topic = "flipkartproductsReplication2"
     val groupId = "SellerCountApp"
 
-    //消费kafka数据
     val recordDStream: InputDStream[ConsumerRecord[String,String]] = MyKafkaUtil.getKafkaStream(topic,ssc,groupId)
 
-    //提取卖家
+    //extract the seller
     val sellerCountMapDStream: DStream[(String,Int)] = recordDStream.map({
       record => {
-        //将json格式字符串转换为json对象
         val jsonObject: JSONObject = JSON.parseObject(record.value())
-        //从json对象中获取卖家
         val seller: String = Option(jsonObject.getString("seller")).getOrElse("")
-        //以卖家为key，1为value
         (seller,1)
       }
     })
 
-    //根据Key对数据的状态进行更新
+    // Update the status of the data according to the key
     val sellerCountDStream: DStream[(String,Int)] = sellerCountMapDStream.updateStateByKey(
       (seq: Seq[Int], buff: Option[Int]) => {
         val newCount = buff.getOrElse(0) + seq.sum
@@ -56,20 +49,19 @@ object SellerCountApp {
 
     sellerCountDStream.print(100)
 
-//    //把结果输出到MySQL中
+//    Output the result to MySQL
 //    sellerCountDStream.foreachRDD(rdd => {
 //
-//      //      过滤掉空字符串的数据
+//      //Filter out data with empty strings
 //      val filteredRDD = rdd.filter { case (seller, _) => seller != "" }
 //
 //      def func(records: Iterator[(String,Int)]) {
 //        var conn: Connection = null
 //        var stmt: PreparedStatement = null
 //        try {
-//          //定义MySQL是链接方式及其用户名和密码
-//          val url = "jdbc:mysql://localhost:3306/movieandecdb?useUnicode=true&characterEncoding=UTF-8"
+//          val url = "jdbc:mysql://node03:3306/movieandecdb?useUnicode=true&characterEncoding=UTF-8"
 //          val user = "root"
-//          val password = "999999999"
+//          val password = "123456"
 //          conn = DriverManager.getConnection(url, user, password)
 //          records.foreach(p => {
 //            val sql = "insert into sellercount(seller,count) values (?,?) on duplicate key update count=?"
@@ -95,15 +87,14 @@ object SellerCountApp {
 //      repartitionedRDD.foreachPartition(func)
 //    })
 
-    //把结果输出到Redis中
+    //Output the result to Redis
     sellerCountDStream.foreachRDD(rdd => {
-      //过滤掉空字符串的数据
+      //Filter out data with empty strings
       val filteredRDD = rdd.filter { case (seller, _) => seller != "" }
 
       def func(records: Iterator[(String, Int)]) {
         var jedis: Jedis = null
         try {
-          //获取redis的连接
           jedis = MyRedisUtil.getJedisClient()
           records.foreach(p => {
             jedis.hset("sellercount", p._1, p._2.toString)

@@ -33,12 +33,15 @@ public class RedisUtil {
 
       if(jedisPool==null){
           JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-          jedisPoolConfig.setMaxTotal(200); // 最大连接数
-          jedisPoolConfig.setMaxIdle(100);// 最多维持100
-          jedisPoolConfig.setMinIdle(10);// 至少维持10
+          // Maximum number of connections
+          jedisPoolConfig.setMaxTotal(200);
+
+          jedisPoolConfig.setMaxIdle(100);// "At least 10"
+          jedisPoolConfig.setMinIdle(10);// "At least 10"
           jedisPoolConfig.setBlockWhenExhausted(true);
           jedisPoolConfig.setMaxWaitMillis(5000);
-          jedisPoolConfig.setTestOnBorrow(true); //借走连接时测试
+          jedisPoolConfig.setTestOnBorrow(true); //"Test when borrowing the connection"
+
 
           jedisPool = new JedisPool(jedisPoolConfig,"node01",6379,60000);
 

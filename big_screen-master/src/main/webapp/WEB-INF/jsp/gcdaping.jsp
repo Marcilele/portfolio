@@ -12,33 +12,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Analysis of Game Recommendation on Steam</title>
-    <!-- 设置标签图标 -->
+    <title>Comprehensive Analysis: Steam Game Recommendations on Big Data Dashboard</title>
+    <!-- Set the tag icon -->
     <link href="images/favicon.ico" rel="shortcut icon" />
-    <!-- 引入需要的css文件 -->
+    <!-- Introduce the required CSS file -->
     <link href="css/gc.css" rel="stylesheet" />
     <script src="js/echarts5.js"></script>
     <script src="js/echarts-wordcloud.js"></script>
 </head>
 <body>
-<!-- 头部 -->
+<!-- header -->
+
 <div id="m_top">
     <div class="title">
-        <h1>Analysis of Game Comment Data Based on Big Data</h1>
+        <h1>Steam Game Recommendations on Big Data Dashboard</h1>
     </div>
 </div>
-<!-- 中部 -->
+<!-- The middle part -->
+
 <div id="m_center">
     <div class="c1">
         <div class="c1_t" id="chart1">
             <script type="text/javascript">
-                // 基于准备好的dom，初始化echarts实例
+
+                // Initialize the echarts instance based on the prepared dom
                 var myChart = echarts.init(document.getElementById('chart1'));
 
-                // 指定图表的配置项和数据
+                // Specify the configuration items and data of the chart
                 var option = {
                     title: {
-                        text: 'Number of Games Released Per Year',
+                        text: 'Annual Game Release Count',
                         textStyle: {
                             color: "white",
                             fontSize: 12
@@ -75,7 +78,7 @@
                     },
                     yAxis: [
                         {
-                            name:"Number",
+
                             type:'value',
                             nameTextStyle: {
                                 color: "white"
@@ -128,18 +131,17 @@
                     ]
                 };
 
-                // 使用刚指定的配置项和数据显示图表。
+                // Use the specified configuration item and data to display the chart.
                 myChart.setOption(option);
             </script>
         </div>
         <div class="c1_m" id="chart2">
             <script type="text/javascript">
-                // 基于准备好的dom，初始化echarts实例
+
                 var myChart = echarts.init(document.getElementById('chart2'));
-                // 指定图表的配置项和数据
                 var option = {
                     title: {
-                        text: 'Game Distribution Across Different Systems',
+                        text: 'Operating System Breakdown for Game Distribution',
                         textStyle: {
                             color: "white",
                             fontSize: 12
@@ -190,7 +192,6 @@
                     yAxis: [
                         {
                             type: 'category',
-                            name:"platform",
                             nameLocation: 'start',
                             nameTextStyle: {
                                 color: "white"
@@ -241,19 +242,16 @@
                     ]
                 };
 
-                // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
             </script>
         </div>
         <div class="c1_b" id="chart3">
             <script type="text/javascript">
-                // 基于准备好的dom，初始化echarts实例
                 var myChart = echarts.init(document.getElementById('chart3'));
 
-                // 指定图表的配置项和数据
                 var option = {
                     title: {
-                        text: 'The Link Between Game Playtime and User Recommendation',
+                        text: 'Correlation Between Game Playtime and User Recommendations',
                         textStyle: {
                             color: "white",
                             fontSize: 11
@@ -265,7 +263,7 @@
                     },
                     legend: {
                         data:[
-                            "Average Playtime Hours"
+                            "Average Hours Spent Playing"
                         ],
                         textStyle: {
                             color: "white",
@@ -292,7 +290,7 @@
                     },
                     yAxis: [
                         {
-                            name:"Hour",
+
                             type:'value',
                             nameTextStyle: {
                                 color: "white"
@@ -321,7 +319,7 @@
                     ], */
                     series: [
                         {
-                            name: 'Average Playtime Hours',
+                            name: 'Average Hours Spent Playing',
                             type: 'bar',
                             radius: '15%',
                             barWidth: 30,
@@ -346,7 +344,6 @@
                     ]
                 };
 
-                // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
             </script>
         </div>
@@ -354,13 +351,11 @@
     <div class="c2">
         <div class="c2_t" id="chart4">
             <script type="text/javascript">
-                // 基于准备好的dom，初始化echarts实例
                 var myChart = echarts.init(document.getElementById('chart4'));
 
-                // 指定图表的配置项和数据
                 var option = {
                     title: {
-                        text: 'Top 10 Most Reviewed Day For Games on Steam',
+                        text: 'Top 10 Days with the Most Game Reviews on Steam',
                         textStyle: {
                             color: "white",
                             fontSize: 12
@@ -370,15 +365,15 @@
                         trigger: "axis",
                         formatter: '{b} <br/>{a}: {c}'
                     },
-                    legend: {
-                        data:[
-                            "Number of Reviews"
-                        ],
-                        textStyle: {
-                            color: "white"
-                        },
-                        left: 220,
-                    },
+                    // legend: {
+                    //     data:[
+                    //         "Number of Reviews"
+                    //     ],
+                    //     textStyle: {
+                    //         color: "white"
+                    //     },
+                    //     left: 220,
+                    // },
                     xAxis: {
                         data: [
                             <c:forEach items="${dateCountList}" var ="b">
@@ -398,8 +393,7 @@
                     },
                     yAxis: [
                         {
-                            name:"number",
-                            type:'value',
+
                             nameTextStyle: {
                                 color: "white"
                             },
@@ -452,18 +446,15 @@
                     ]
                 };
 
-                // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
             </script>
         </div>
         <div class="c2_b" id="chart5">
             <script type="text/javascript">
-                // 基于准备好的dom，初始化echarts实例
                 var myChart = echarts.init(document.getElementById('chart5'));
-                // 指定图表的配置项和数据
                 var option = {
                     title: {
-                        text: 'Analysis of User Reactions to Recommendation Reviews on Steam',
+                        text: 'Insights into User Responses to Steam Recommendation Reviews',
                         left: 'center',
                         top: '20',
                         textStyle: {
@@ -512,7 +503,6 @@
                     ]
                 };
 
-                // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
             </script>
         </div>
@@ -520,12 +510,10 @@
     <div class="c3">
         <div class="c3_t" id="chart6">
             <script type="text/javascript">
-                // 基于准备好的dom，初始化echarts实例
                 var myChart = echarts.init(document.getElementById('chart6'));
-                // 指定图表的配置项和数据
                 var option = {
                     title: {
-                        text: 'Users\' Review of Games on Steam',
+                        text: 'User Feedback on Steam Games',
                         left: 'center',
                         textStyle: {
                             color: "white",
@@ -572,7 +560,6 @@
                     ]
                 };
 
-                // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
             </script>
         </div>
@@ -581,7 +568,7 @@
                 var myChart = echarts.init(document.getElementById('chart7'));
                 myChart.setOption({
                     title: {
-                        text: 'Number of Game Tags on Steam',
+                        text: 'Steam Game Tag Distribution',
                         textStyle: {
                             color: "white",
                             fontSize: 12
@@ -589,12 +576,12 @@
                     },
                     tooltip: {},
                     series: [{
-                        type : 'wordCloud',  //类型为字符云
-                        shape:'smooth',  //平滑
-                        gridSize : 8, //网格尺寸
+                        type : 'wordCloud',
+                        shape:'smooth',
+                        gridSize : 8,
                         size : ['50%','50%'],
                         //sizeRange : [ 50, 100 ],
-                        rotationRange : [-45, 0, 45, 90], //旋转范围
+                        rotationRange : [-45, 0, 45, 90],
                         textStyle : {
                             normal : {
                                 fontFamily:'微软雅黑',
@@ -606,8 +593,8 @@
                                 }
                             },
                             emphasis : {
-                                shadowBlur : 5,  //阴影距离
-                                shadowColor : '#333'  //阴影颜色
+                                shadowBlur : 5,
+                                shadowColor : '#333'
                             }
                         },
                         left: 'center',

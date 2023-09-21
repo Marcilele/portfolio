@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.bigdata.visualanalysis.bean.CategoryAverageRating" %>
-<%@page import="com.bigdata.visualanalysis.bean.ActualPriceAndDiscount" %>
+<%@page import="com.bigdata.visualanalysis.bean.Discount" %>
 <%@page import="com.bigdata.visualanalysis.bean.BrandCount" %>
 <%@page import="com.bigdata.visualanalysis.bean.ProductCount" %>
 <%@page import="com.bigdata.visualanalysis.bean.OutOfStockCount" %>
@@ -13,7 +13,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>E-commerce data analysis based on big data</title>
+    <title>Flipkart E-commerce on Big Data Dashboard</title>
     <script type="text/javascript" src="js/jquery.js"></script>
     <link rel="stylesheet" href="css/comon0.css">
 </head>
@@ -53,19 +53,19 @@
 
     <script>
         var t = null;
-        t = setTimeout(time,1000);//開始运行
+        t = setTimeout(time,1000);
         function time()
         {
-            clearTimeout(t);//清除定时器
+            clearTimeout(t);
             dt = new Date();
             var y=dt.getFullYear();
             var mt=dt.getMonth()+1;
             var day=dt.getDate();
-            var h=dt.getHours();//获取时
-            var m=dt.getMinutes();//获取分
-            var s=dt.getSeconds();//获取秒
+            var h=dt.getHours();
+            var m=dt.getMinutes();
+            var s=dt.getSeconds();
             // document.getElementById("showTime").innerHTML = y+"年"+mt+"月"+day+"日"+"-"+h+"时"+m+"分"+s+"秒";
-            t = setTimeout(time,1000); //设定定时器，循环运行
+            t = setTimeout(time,1000);
         }
 
 
@@ -78,17 +78,17 @@
     <ul class="clearfix">
         <li>
             <div class="boxall" style="height: 3.2rem">
-                <div class="alltitle">Average rating of products in different categories</div>
+                <div class="alltitle">Average Product Ratings Across Categories</div>
                 <div class="allnav" id="echart1"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 3.2rem">
-                <div class="alltitle">The relationship between original price and discount</div>
+                <div class="alltitle">Total Count of Products Utilizing Specific Discounts</div>
                 <div class="allnav" id="echart2"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 3.2rem">
-                <div class="alltitle">Top 10 products of different brands</div>
+                <div class="alltitle">Top 10 Brands with the Highest Product Offerings</div>
                 <div class="allnav" id="echart3"></div>
                 <div class="boxfoot"></div>
             </div>
@@ -103,8 +103,8 @@
                 </div>
                 <div class="barbox2">
                     <ul class="clearfix">
-                        <li class="pulll_left">Product quantity</li>
-                        <li class="pulll_left">Quantity of out of stock products</li>
+                        <li class="pulll_left">Total Product Inventory</li>
+                        <li class="pulll_left">Out-of-Stock Product Count</li>
                     </ul>
                 </div>
             </div>
@@ -117,17 +117,17 @@
         </li>
         <li>
             <div class="boxall" style="height:3.4rem">
-                <div class="alltitle">Number of products in different categories</div>
+                <div class="alltitle">Product Count Across Various Categories</div>
                 <div class="allnav" id="echart4"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 3.2rem">
-                <div class="alltitle">Top 5 products in different subcategories</div>
+                <div class="alltitle">Top 5 Subcategories with the Largest Product Range</div>
                 <div class="allnav" id="echart5"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 3rem">
-                <div class="alltitle">Top 10 products from different sellers</div>
+                <div class="alltitle">Top 10 Sellers with the Largest Product Offerings</div>
                 <div class="allnav" id="echart6"></div>
                 <div class="boxfoot"></div>
             </div>
@@ -321,7 +321,7 @@
         var x = [];
         var y = [];
         $.ajax({
-            url: "/actualpriceanddiscount",
+            url: "/discountcount",
             type: "get",
             dataType: "json",
             async: false,
@@ -330,8 +330,8 @@
             }
         });
         for (var i = 0; i < result.length; i++) {
-            x.push(result[i].actualPrice);
-            y.push(result[i].discount);
+            x.push(result[i].dicount);
+            y.push(result[i].count);
         }
         console.log(x);
         console.log(y);
@@ -352,7 +352,7 @@
             },
             legend: {
                 data:[
-                    "discount rate"
+                    "discount"
                 ],
                 textStyle: {
                     color: "#89A0BF"
@@ -362,7 +362,7 @@
             xAxis: {
                 data: x,
                 type: 'category',
-                name:"price",
+                name:"discount",
                 nameTextStyle: {
                     color: "white",
                     fontSize: 10,
@@ -375,7 +375,7 @@
             },
             yAxis: [
                 {
-                    name:"discount rate",
+                    name:"count",
                     type:'value',
                     nameTextStyle: {
                         color: "white"
