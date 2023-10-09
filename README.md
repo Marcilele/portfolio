@@ -34,7 +34,7 @@ Application & Visualization: Springboot, echarts.
 ### Key Achievements
 Processed over 30,000 product updates per five second.
 
-# Batch Processing Data Pipeline(Game Recommendtions On Steam):
+# Batch Processing Data Pipeline (Game Recommendtions On Steam)
 
 
 ## Overview
