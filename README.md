@@ -20,9 +20,10 @@ Employed Spark Streaming to consume the Kafka data feeds, performing real-time a
 ## Result Storage
 
 Depending on the specific requirements of the analysis, results were either stored in Redis for rapid retrieval or persisted in MySQL for structured storage.
-Visualization & Application Deployment
 
-Developed an interactive dashboard using Springboot, incorporating echarts for a dynamic display of the analyzed data, highlighting trends, and insights related to Flipkart's fashion products.
+## Visualization & Application Deployment
+
+Developed an interactive dashboard using Springboot, incorporating echarts for a dynamic display of the analyzed data, highlighting trends, and insights related to Flipkart's fashion products. Youtube link: https://www.youtube.com/watch?v=hoHWk2Ni3S8
 
 ## Technologies Used
 
@@ -60,7 +61,7 @@ Leveraged Sqoop to migrate the analyzed results from HDFS to a MySQL database ef
 
 ## Visualization & Application Development
 
-Utilized FineBI for generating insightful visualizations. Additionally, built an interactive application with Springboot, integrating echarts for dynamic data representations.
+Utilized FineBI for generating insightful visualizations. Additionally, built an interactive application with Springboot, integrating echarts for dynamic data representations. Youtube Link: https://www.youtube.com/watch?v=Dvc6x61TEcw
 
 ## Technologies Used
 
