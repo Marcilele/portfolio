@@ -1,35 +1,85 @@
 # portfolio
 
-Real-time Data Processing Workflow (Flipkart):
+# Stream Processing Analysis on Flipkart Fashion Products
 
-    File Data: The process starts with raw data that is stored in files. Here I use json format file.
+## Overview
+Leveraging a comprehensive dataset of Flipkart fashion products from Kaggle, I conducted an in-depth stream processing analysis.
+This project was designed to emulate a real-time data processing pipeline, converting raw data streams into actionable insights and engaging visualizations, with a focus on understanding product trends and user preferences within the online fashion retail space.
 
-    Flume: Apache Flume is employed as a distributed service to efficiently collect, aggregate, and transport large amounts of log data. In this step, Flume sources the data from files and channels it towards Kafka.
+## Scope & Responsibilities
+Data Ingestion & Cleanup
 
-    Kafka: Apache Kafka, a distributed streaming platform, receives the data from Flume. It acts as a buffer and message broker, ensuring that data is reliably transmitted to the next processing stage, which is SparkStreaming.
+Imported the dataset, originally in JSON format, into MySQL. Conducted thorough data cleaning to ensure accuracy and consistency.
+Real-time Data Streaming
 
-    SparkStreaming: Apache Spark's streaming module processes the data in real-time. It can handle high-velocity data and perform transformations, aggregations, or any other operations as required. 
+Utilized Flume to write data efficiently to Kafka, setting up a seamless pipeline for real-time data ingestion.
+Data Analysis with Spark Streaming
 
-    Redis: After processing, the data is then pushed to Redis, an in-memory data structure store. Redis ensures rapid data retrieval and acts as a cache, holding the processed data ready for visualization.
+Employed Spark Streaming to consume the Kafka data feeds, performing real-time analysis to extract meaningful insights from the continuous flow of product data.
 
-    Ajax for Real-time Data Visualization: With the data stored in Redis, asynchronous JavaScript (Ajax) requests are used to fetch the data in real-time. This ensures that the latest processed data is always available for visualization.
+## Result Storage
 
-    Visualization Technologies (SpringBoot, JSP, Echarts):
-        SpringBoot: A Java-based framework is used for building stand-alone, production-ready applications. In this context, it's likely handling the web server responsibilities and back-end functionalities.
-        JSP (JavaServer Pages): Helps in creating dynamically generated web pages based on the processed data.
-        Echarts: A comprehensive charting library that provides a wide array of visualization options, making it easier to represent the data in visually appealing and understandable formats."
+Depending on the specific requirements of the analysis, results were either stored in Redis for rapid retrieval or persisted in MySQL for structured storage.
+Visualization & Application Deployment
 
-Batch Processing Data Pipeline(Game Recommendtions On Steam):
+Developed an interactive dashboard using Springboot, incorporating echarts for a dynamic display of the analyzed data, highlighting trends, and insights related to Flipkart's fashion products.
 
-    File Data Ingestion: The journey of the data commences from files which could encompass multiple files like CSVs
+## Technologies Used
 
-    Hive for Data Storage and Analysis: Apache Hive comes into play as the next stop in our workflow. Primarily designed for data query and analysis, Hive provides a mechanism for projecting structure onto large datasets and enables querying data using a SQL-like language called HiveQL. Here, data from files is ingested, stored, and managed.
+Databases & Storage: MySQL, Redis.
+Streaming & Processing: Flume, Kafka, Spark Streaming.
+Application & Visualization: Springboot, echarts.
 
-    Sqoop for Data Transfer: With data being ready and structured in Hive, Apache Sqoop takes charge of efficiently transferring bulk data between Hive and relational databases, in this case, MySQL. Sqoop ensures that data migrations are quick and maintain the integrity of the data.
+### Key Achievements
+Processed over 30,000 product updates per five second.
 
-    MySQL for RDBMS Storage: Once the data lands into MySQL, it is stored in relational tables. MySQL, being a reliable and widely-used relational database management system, offers flexibility for further querying and organizing the data.
+# Batch Processing Data Pipeline(Game Recommendtions On Steam):
 
-    Data Visualization Stack:
-        SpringBoot: Serving as the backbone for the application layer, SpringBoot facilitates the creation of stand-alone applications, possibly acting as a web server and managing back-end processes in this context.
-        JSP (JavaServer Pages): Here, JSP assists in dynamically crafting web pages based on the data present in MySQL, ensuring the information is presented in a user-friendly manner.
-        Echarts: This potent charting library illuminates the data, offering a rich assortment of visualization options. Through Echarts, data is presented in a series of intuitive charts and graphs, ensuring users can derive insights effectively.
+
+## Overview
+
+Utilizing a rich dataset on Steam game recommendations from Kaggle, I conducted a comprehensive batch processing analysis. The project's objective was to simulate an end-to-end data pipeline, transforming raw data into actionable insights and visual representations, highlighting user game preferences, and potential trends within the gaming community.
+Scope & Responsibilities
+
+## Data Ingestion
+
+Imported the dataset into HDFS, laying the groundwork for further processing and ensuring data integrity.
+Data Layering with Hive
+Implemented a three-tier data structure
+
+### Operational Data Store (ODS)
+Served as the raw data layer.
+
+### Data Warehouse (DW)
+Included the dwd (detailed data layer), dim (dimensional data layer), and dws (summary data layer), transforming raw data into a structured, query-optimized format.
+### Application Data Store (ADS)
+The final processed data tier, optimized for application use and visualization.
+
+### Data Export
+Leveraged Sqoop to migrate the analyzed results from HDFS to a MySQL database efficiently.
+
+## Visualization & Application Development
+
+Utilized FineBI for generating insightful visualizations. Additionally, built an interactive application with Springboot, integrating echarts for dynamic data representations.
+
+## Technologies Used
+
+Big Data Storage & Processing:
+HDFS, Hive, Mapreduce
+Data Transfer:
+Sqoop
+Database:
+MySQL
+Visualization & App Development:
+FineBI, Springboot, echarts.
+Version Control:
+Github
+
+## Key Achievements
+### Growth Trajectory Insight
+
+Identified a momentous growth in the gaming industry spanning 25 years. Beginning with a mere 2 games in 1997, the industry witnessed an impressive surge, with 7,270 games released in 2022.
+
+### Game Tag Analysis
+
+Delved deep into game preferences, revealing "Indie", "Singleplayer", and "Action" as the top three most prevalent tags throughout the years. This underscores a consistent inclination towards independent games, solitary gaming experiences, and action-driven gameplay in the gaming community.
