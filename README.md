@@ -1,5 +1,3 @@
-# portfolio
-
 # Stream Processing Analysis on Flipkart Fashion Products
 
 ## Overview
