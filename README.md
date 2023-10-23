@@ -4,8 +4,8 @@ setup 3 virtual machines, make sure you configure the network and SSH access, so
    ![structure](https://github.com/Marcilele/portfolio/assets/68567431/1eb5258d-a7eb-4cca-8eee-7fba462479bf)
 
 
-
-# Stream Processing Analysis on Flipkart Fashion Products
+# Project Description
+## Stream Processing Analysis on Flipkart Fashion Products
 ## Overview
 Leveraging a comprehensive dataset of Flipkart fashion products from Kaggle, I conducted an in-depth stream processing analysis.
 This project was designed to emulate a real-time data processing pipeline, converting raw data streams into actionable insights and engaging visualizations, with a focus on understanding product trends and user preferences within the online fashion retail space.
