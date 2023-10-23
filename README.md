@@ -28,7 +28,10 @@ Depending on the specific requirements of the analysis, results were either stor
 
 ## Visualization & Application Deployment
 
-Developed an interactive dashboard using Springboot, incorporating echarts for a dynamic display of the analyzed data, highlighting trends, and insights related to Flipkart's fashion products. Youtube link: https://www.youtube.com/watch?v=hoHWk2Ni3S8
+Developed an interactive dashboard using Springboot, incorporating echarts for a dynamic display of the analyzed data, highlighting trends, and insights related to Flipkart's fashion products. 
+![Flipkart E-commerce on Big Data Dashboard](https://github.com/Marcilele/portfolio/assets/68567431/eb109480-e0e4-44a2-a80c-06ab81204e21)
+
+
 
 ## Technologies Used
 
@@ -65,7 +68,9 @@ Leveraged Sqoop to migrate the analyzed results from HDFS to a MySQL database ef
 
 ## Visualization & Application Development
 
-Utilized FineBI for generating insightful visualizations. Additionally, built an interactive application with Springboot, integrating echarts for dynamic data representations. Youtube Link: https://www.youtube.com/watch?v=Dvc6x61TEcw
+Utilized FineBI for generating insightful visualizations. Additionally, built an interactive application with Springboot, integrating echarts for dynamic data representations.
+![Comprehensive Analysis Steam Game Recommendations on Big Data Dashboard](https://github.com/Marcilele/portfolio/assets/68567431/9637b23c-8a94-4944-ab99-8915168688bf)
+
 
 ## Technologies Used
 
