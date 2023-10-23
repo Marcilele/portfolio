@@ -1,7 +1,8 @@
 # Setup
 To run the code, you need to setup your cluster, install and configure the following applications:
 setup 3 virtual machines, make sure you configure the network and SSH access, so each VM can communicate with each other, install the following applications on each machine, make sure they are compatible with each other. 
-   ![structure](https://github.com/Marcilele/portfolio/assets/68567431/1eb5258d-a7eb-4cca-8eee-7fba462479bf)
+   ![structure](https://github.com/Marcilele/portfolio/assets/68567431/552d2a8f-d8d2-42ff-8d43-49c5ef053ab4)
+
 
 
 # Project Description
