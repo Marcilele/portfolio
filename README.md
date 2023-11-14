@@ -9,7 +9,9 @@ setup 3 virtual machines, make sure you configure the network and SSH access, so
 Leveraging a comprehensive dataset of Flipkart fashion products from Kaggle, I conducted an in-depth stream processing analysis.
 This project was designed to emulate a real-time data processing pipeline, converting raw data streams into actionable insights and engaging visualizations, with a focus on understanding product trends and user preferences within the online fashion retail space.
 ### Data Pipeline
-![Slide 16_9 - 5(1)](https://github.com/Marcilele/portfolio/assets/68567431/26384037-a1e6-4b20-88c9-26d651ffb2fc)
+
+![Stream](https://github.com/Marcilele/portfolio/assets/68567431/44974721-0ac9-4998-9e80-a1d7162e0ae9)
+
 
 
 ### Scope & Responsibilities
@@ -52,7 +54,9 @@ Utilizing a rich dataset on Steam game recommendations from Kaggle, I conducted 
 Scope & Responsibilities
 
 ### Data Pipeline
-![Slide 16_9 - 4(2)](https://github.com/Marcilele/portfolio/assets/68567431/5b3a2f28-fac9-4f70-8597-bc518b0fdbdc)
+
+
+![batch](https://github.com/Marcilele/portfolio/assets/68567431/8ad65c51-60a3-4792-a15b-17f803585911)
 
 
 ### Data Ingestion
